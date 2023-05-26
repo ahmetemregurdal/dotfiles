@@ -1,1 +1,6 @@
-.config/eww/scripts/getvol
+#! /bin/bash
+if [ $(pamixer --get-mute) = "true" ]; then
+	echo "0"
+else
+	pamixer --get-volume
+fi

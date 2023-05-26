@@ -1,1 +1,81 @@
-.config/eww/eww.yuck
+(defwidget bar []
+  (centerbox :orientation "h"
+    (workspaces)
+    (music)
+    (sidestuff)))
+
+(defwidget sidestuff []
+  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end" :spacing 10
+    (box :orientation "h" :space-evenly false
+    (metric :label ""
+            :value volume
+            :onchange "")
+    (metric :label ""
+            :value {EWW_RAM.used_mem_perc}
+            :onchange "")
+    (metric :label ""
+            :value battery
+            :onchange ""))
+    (button :onclick "i3-msg exit" "")
+    (button :onclick "shutdown -a now" "")
+    (button :onclick "shutdown -r now" "")
+    time))
+
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly true
+       :halign "start"
+       :spacing 10
+    (button :onclick "i3-msg workspace 1" "1")
+    (button :onclick "i3-msg workspace 2" "2")
+    (button :onclick "i3-msg workspace 3" "3")
+    (button :onclick "i3-msg workspace 4" "4")
+    (button :onclick "i3-msg workspace 5" "5")
+    (button :onclick "i3-msg workspace 6" "6")
+    (button :onclick "i3-msg workspace 7" "7")
+    (button :onclick "i3-msg workspace 8" 8)
+    (button :onclick "i3-msg workspace 9" 9)
+    (button :onclick "i3-msg workspace 10" "10")))
+
+(defwidget music []
+  (box :class "music"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+       curwindow))
+
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(deflisten music :initial ""
+  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+
+(defpoll volume :interval "1s"
+  "scripts/getvol")
+(defpoll curwindow :interval "0.2s"
+	"xdotool getwindowfocus getwindowclassname")
+
+(defpoll time :interval "10s"
+  "date '+%H:%M %b %d, %Y'")
+(defpoll battery :interval "10s"
+  "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage: | cut -d ':' -f 2 | rev | cut -c2- | rev | cut -c11-")
+(defwindow bar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "10px"
+                      :anchor "top center")
+  :reserve (struts :side "top" :distance "4%")
+  (bar))
