@@ -197,8 +197,8 @@ default_border pixel 2
 default_floating_border pixel 2
 gaps inner 5
 gaps outer 10
-assign [class="LibreWolf"] 1
-exec librewolf
+assign [class="firefox"] 1
+exec firefox
 assign [class="Lutris"] 10
 exec lutris
 assign [class="Feedreader"] 2
