@@ -57,7 +57,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id ulauncher
+bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -102,7 +102,7 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-
+bindsym $mod+Shift+space floating toggle
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -197,8 +197,8 @@ default_border pixel 2
 default_floating_border pixel 2
 gaps inner 5
 gaps outer 10
-assign [class="firefox"] 1
-exec firefox
+assign [class="LibreWolf"] 1
+exec librewolf
 assign [class="Lutris"] 10
 exec lutris
 assign [class="Feedreader"] 2
@@ -208,3 +208,5 @@ exec whatsapp-for-linux
 assign [class="discord"] 4
 exec discord
 exec_always picom
+exec_always dbus-send --session --print-reply --dest=org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.GetServerInformation
+exec_always dbus-send --session --print-reply --dest=org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.ShowNotifications

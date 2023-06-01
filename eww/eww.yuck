@@ -7,7 +7,7 @@
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end" :spacing 10
     (box :orientation "h" :space-evenly false
-    (metric :label ""
+    (metric :label mute
             :value volume
             :onchange "")
     (metric :label ""
@@ -60,8 +60,10 @@
 (deflisten music :initial ""
   "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
 
-(defpoll volume :interval "1s"
+(defpoll volume :interval "0.2s"
   "scripts/getvol")
+(defpoll mute :interval "0.2s"
+	"scripts/get-mute")
 (defpoll curwindow :interval "0.2s"
 	"xdotool getwindowfocus getwindowclassname")
 
