@@ -210,3 +210,4 @@ exec discord
 exec_always picom
 exec_always dbus-send --session --print-reply --dest=org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.GetServerInformation
 exec_always dbus-send --session --print-reply --dest=org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.ShowNotifications
+bindsym Print exec shutter -s
