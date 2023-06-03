@@ -200,7 +200,6 @@ gaps outer 10
 assign [class="LibreWolf"] 1
 exec librewolf
 assign [class="Lutris"] 10
-exec lutris
 assign [class="Feedreader"] 2
 exec feedreader
 assign [class="Whatsapp-for-linux"] 3
