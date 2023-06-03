@@ -80,4 +80,5 @@
                       :height "10px"
                       :anchor "top center")
   :reserve (struts :side "top" :distance "4%")
+	:focusable true
   (bar))
