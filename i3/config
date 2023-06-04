@@ -210,3 +210,13 @@ exec_always picom
 exec_always dbus-send --session --print-reply --dest=org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.GetServerInformation
 exec_always dbus-send --session --print-reply --dest=org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.ShowNotifications
 bindsym Print exec shutter -s
+bindsym Control+Up exec xdotool mousemove_relative -- 0 -10
+bindsym Control+Down exec xdotool mousemove_relative 0 10
+bindsym Control+Left exec xdotool mousemove_relative -- -10 0
+bindsym Control+Right exec xdotool mousemove_relative 10 0
+bindsym Control+Shift+Up exec xdotool mousemove_relative -- 0 -100
+bindsym Control+Shift+Down exec xdotool mousemove_relative 0 100
+bindsym Control+Shift+Left exec xdotool mousemove_relative -- -100 0
+bindsym Control+Shift+Right exec xdotool mousemove_relative 100 0
+bindsym Control+Return exec xdotool click 1
+bindsym Control+Shift+Return exec xdotool click 3
