@@ -9,6 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+exec --no-startup-id /usr/lib/pam_kwallet_init
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -57,7 +58,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id krunner
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -145,8 +146,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec i3-msg exit
-
+bindsym $mod+Shift+e exec --no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -178,7 +178,6 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 exec --no-startup-id feh --bg-scale ~/Pictures/archwall.jpg
 exec --no-startup-id setxkbmap tr
-exec --no-startup-id eww open bar
 set $bg #282828
 set $red #cc241d
 set $green #98971a
@@ -220,3 +219,17 @@ bindsym Control+Shift+Left exec xdotool mousemove_relative -- -100 0
 bindsym Control+Shift+Right exec xdotool mousemove_relative 100 0
 bindsym Control+Return exec xdotool click 1
 bindsym Control+Shift+Return exec xdotool click 3
+assign [class="neovide"] 5
+exec neovide
+for_window [title="Desktop — Plasma"] kill, 
+for_window [class="plasmashell"] floating enable, floating enable, border none
+for_window [class="Plasma"] floating enable, border none
+for_window [title="plasma-desktop"] floating enable, border none
+for_window [title="win7"] floating enable, border none
+for_window [class="krunner"] floating enable, border none
+for_window [class="Kmix"] floating enable, border none
+for_window [class="Klipper"] floating enable, border none
+for_window [class="Plasmoidviewer"] floating enable, border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
+no_focus [class="plasmashell" window_type="notification"] 

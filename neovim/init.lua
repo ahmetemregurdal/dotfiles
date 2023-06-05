@@ -16,8 +16,19 @@ vim.opt.encoding = "UTF-8"
 vim.opt.mouse = "a"
 vim.opt.confirm = true
 vim.opt.history = 1000
+vim.g.neo_tree_remove_legacy_commands = 1
 vim.opt.smartindent = true
+vim.g.UltiSnipsExpandTrigger = "<S-t>"
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if vim.g.neovide then
+	vim.o.guifont = "Fira Code Medium:h12"
+	vim.g.neovide_scale_factor=0.75
+	vim.keymap.set('v', '<C-c>', '"+y') 
+	vim.keymap.set('n', '<C-v>', '"+P')
+	vim.keymap.set('v', '<C-v>', '"+P')
+	vim.keymap.set('c', '<C-v>', '<C-R>+')
+	vim.keymap.set('i', '<C-v>', '<ESC>l"+Pli')
+end
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
@@ -44,11 +55,10 @@ require("lazy").setup({
 	{"nvim-treesitter/nvim-treesitter", build = "TSUpdate"},
 	{"nvim-neo-tree/neo-tree.nvim", branch = "v2.x", dependencies = {"nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim" }},
 	{"nvim-lualine/lualine.nvim", dependencies = {"nvim-tree/nvim-web-devicons"}},
-	"lervag/vimtex",
 	"phaazon/hop.nvim",
 	"folke/which-key.nvim",
 	{'akinsho/toggleterm.nvim', version = "*", config = true},
-	{'romgrk/barbar.nvim', dependencies = { 'lewis6991/gitsigns.nvim', 'nvim-tree/nvim-web-devicons',},init = function() vim.g.barbar_auto_setup = false end},
+	{'romgrk/barbar.nvim', dependencies = { 'lewis6991/gitsigns.nvim', 'nvim-tree/nvim-web-devicons',},init = function() vim.g.barbar_auto_setup = false end, opts={animation=true}},
 })
 require('lualine').setup {
 	options = {
@@ -116,16 +126,11 @@ filetype on
 syntax enable
 filetype plugin indent on
 colorscheme gruvbox
-let g:neo_tree_remove_legacy_commands = 1
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-let g:vimtex_compiler_method = 'latexrun'
 autocmd bufenter * if (winnr("$") == 1 && &filetype == "neo-tree") | q | endif
 nmap <C-A> :Addtc<CR>
 nmap <C-T> :Test<CR>
 nmap <C-S> :Submit<CR>
 nmap tt :ToggleTerm direction=float<CR>
-:NeoTreeShow
-let g:indentLine_char = '|'
+:Neotree
 nmap ll :Lazy<CR>
 ]])
