@@ -1,0 +1,21 @@
+vim.opt.bg = "dark"
+vim.opt.compatible = false
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.hidden = true
+vim.opt.fileformat = "unix"
+vim.opt.ignorecase = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.termguicolors = true
+vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"
+vim.opt.wildoptions = "pum"
+vim.opt.encoding = "UTF-8"
+vim.opt.mouse = "a"
+vim.opt.confirm = true
+vim.opt.history = 1000
+vim.g.neo_tree_remove_legacy_commands = 1
+vim.opt.smartindent = true
+

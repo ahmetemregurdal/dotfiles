@@ -219,6 +219,4 @@ bindsym Control+Shift+Left exec xdotool mousemove_relative -- -100 0
 bindsym Control+Shift+Right exec xdotool mousemove_relative 100 0
 bindsym Control+Return exec xdotool click 1
 bindsym Control+Shift+Return exec xdotool click 3
-assign [class="neovide"] 5
-exec neovide
 exec eww open bar
