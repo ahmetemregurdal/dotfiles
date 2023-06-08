@@ -18,4 +18,4 @@ vim.opt.confirm = true
 vim.opt.history = 1000
 vim.g.neo_tree_remove_legacy_commands = 1
 vim.opt.smartindent = true
-
+vim.opt.wrap = true

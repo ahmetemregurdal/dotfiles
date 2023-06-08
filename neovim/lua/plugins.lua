@@ -40,4 +40,5 @@ require("lazy").setup({
 	"petertriho/cmp-git",
 	"neovim/nvim-lspconfig",
 	"williamboman/nvim-lsp-installer",
+	"mg979/vim-visual-multi",
 })
