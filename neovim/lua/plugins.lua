@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 require("lazy").setup({
 	"searleser97/cpbooster.vim",
-	"morhetz/gruvbox",
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	"mbbill/undotree",
 	"psliwka/vim-smoothie",
 	"christoomey/vim-system-copy",
@@ -40,5 +40,6 @@ require("lazy").setup({
 	"petertriho/cmp-git",
 	"neovim/nvim-lspconfig",
 	"williamboman/nvim-lsp-installer",
+	"norcalli/nvim-colorizer.lua",
 	"mg979/vim-visual-multi",
 })

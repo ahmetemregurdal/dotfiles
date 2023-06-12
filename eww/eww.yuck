@@ -6,21 +6,25 @@
 
 (defwidget sidestuff []
  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end" :spacing 10
-  (box :orientation "h" :space-evenly false
-   (metric :label mute
+  (box :orientation "h" :space-evenly false :spacing 5
+   (button :onclick "dunstctl history-pop" :onrightclick "dunstctl history-clear" " ")
+	notification
+   (button :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle" mute)
+   (metric :label ""
 	:value volume
 	:onchange "")
-   (metric :label ""
-	:value {EWW_RAM.used_mem_perc}
-	:onchange "")
-   (metric :label ""
-	:value battery
-	:onchange ""))
-  (button :onclick "i3-msg exit" "")
-  (button :onclick "shutdown -a now" "")
-  (button :onclick "shutdown -r now" "")
+   "  "
+   memory
+	"% "
+   "  " battery "%")
+  (button :onclick "i3-msg exit" " ")
+  (button :onclick "shutdown -a now" " ")
+  (button :onclick "shutdown -r now" " ")
   time))
-
+(defpoll memory :interval "0.5s"
+	"free | grep Mem | awk '{print $3/$2 * 100.0}' | cut -d '.' -f 1")
+(defpoll notification :interval "1s"
+	"echo $(($(dunstctl count history)+$(dunstctl count displayed)))")
 (defwidget workspaces []
  (box :class "workspaces"
   :orientation "h"
@@ -77,8 +81,8 @@
 		:geometry (geometry :x "0%"
 			:y "0%"
 			:width "100%"
-			:height "10px"
+			:height "20px"
 			:anchor "top center")
-		:reserve (struts :side "top" :distance "4%")
+		:reserve (struts :side "top" :distance "20px")
 		:focusable true
 		(bar))
