@@ -225,3 +225,5 @@ exec eww open bar
 for_window [class=".*"] border pixel 1
 exec dunst
 exec feh --bg-scale ~/Pictures/linuxwall.jpg
+exec libinput-gestures
+exec xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
