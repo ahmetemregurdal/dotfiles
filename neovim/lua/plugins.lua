@@ -42,7 +42,13 @@ require("lazy").setup({
 	"williamboman/nvim-lsp-installer",
 	"norcalli/nvim-colorizer.lua",
 	"mg979/vim-visual-multi",
-	"github/copilot.vim",
 	"hrsh7th/cmp-path",
 	"vim-autoformat/vim-autoformat",
+	"numToStr/Comment.nvim",
+	"folke/flash.nvim",
+	"zbirenbaum/copilot.lua",
+	{"zbirenbaum/copilot-cmp", config=function ()
+		require("copilot_cmp").setup()
+	end},
+	"nvim-treesitter/nvim-treesitter-context",
 })
